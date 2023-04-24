@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "134381779616",
+    "project_id": "unitalk-4a62b",
+    "storage_bucket": "unitalk-4a62b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134381779616:android:5ea2e109a568423ce4e7c5",
+        "android_client_info": {
+          "package_name": "com.example.uni_talk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134381779616-mshi9rr50s18n1tl51uv94ulq981rnkh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uni_talk",
+            "certificate_hash": "5cd141628ed09ec0a412dc313dbb23fbf1ad3ddc"
+          }
+        },
+        {
+          "client_id": "134381779616-kl60t2pld4jkqf0o776f5058jma6qurv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArHd9djdiaZ0jbRKZGWYEmF2nbdPrdBIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134381779616-kl60t2pld4jkqf0o776f5058jma6qurv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
