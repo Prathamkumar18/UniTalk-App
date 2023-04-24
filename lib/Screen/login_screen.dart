@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.only(left: 20.0),
               child: Text("Login",
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Color.fromARGB(255, 0, 0, 0),
                       fontSize: 40,
                       fontWeight: FontWeight.bold)),
             ),
@@ -121,7 +121,9 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/forgotPassword');
+                  },
                   child: Text("Forgot Password?",
                       style: TextStyle(
                           color: Colors.blue,
@@ -186,7 +188,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: 5,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/signUp');
+                  },
                   child: Text(
                     "Sign Up",
                     style: TextStyle(
