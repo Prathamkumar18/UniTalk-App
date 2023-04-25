@@ -90,15 +90,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Enter Password";
-                        } else if (value.length < 8) {
-                          return "Password should be >=8";
+                        } else if (value.length < 6) {
+                          return "Password should be >=6";
                         } else {
                           return null;
                         }
                       },
                       obscureText: passwordVisible == true ? false : true,
                       decoration: InputDecoration(
-                          hintText: "length should be >=8",
+                          hintText: "length should be >=6",
                           label: Text("Password",
                               style: TextStyle(fontWeight: FontWeight.w400)),
                           prefixIcon: Icon(Icons.lock_open),
@@ -141,7 +141,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 image: false,
                 textColor: white,
                 color: Colors.blue,
-                onPressed: () {},
+                onPressed: () {
+                  _authMethods.LoginUser(
+                      context, emailController.text, passwordController.text);
+                },
               ),
             ),
             SizedBox(

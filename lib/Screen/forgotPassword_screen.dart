@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:uni_talk/Utils/Colors.dart';
+import 'package:uni_talk/Utils/utils.dart';
 import 'package:uni_talk/Widgets/CustomButton.dart';
+import 'package:uni_talk/resources/auth_method.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -14,7 +16,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
-
+  final AuthMethods _authMethods = AuthMethods();
   TextEditingController emailController = TextEditingController();
   @override
   void dispose() {
@@ -111,7 +113,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   image: false,
                   textColor: white,
                   color: Colors.blue,
-                  onPressed: () {},
+                  onPressed: () {
+                    _authMethods.PasswordChange(context, emailController.text);
+                    showSnackBar(context,
+                        "You will recieve a mail to reset your password.");
+                  },
                 ),
               ),
             ])));

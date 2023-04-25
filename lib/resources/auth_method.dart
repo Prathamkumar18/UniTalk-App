@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ class AuthMethods {
   //Database
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Stream<User?> get authChanges => _auth.authStateChanges();
   Future<bool> signInWithGoogle(BuildContext context) async {
     bool res = false;
     try {
@@ -43,5 +41,37 @@ class AuthMethods {
     }
     return res;
   }
-  
+
+  //Creating User with email and password
+  createUserWithEmail(
+      BuildContext context, String email, String password) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      showSnackBar(context, "Registered successfully");
+      Navigator.pushNamed(context, '/login');
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+  }
+
+  //Login Users
+  LoginUser(BuildContext context, String email, String password)async{
+    try{
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      showSnackBar(context, "logged in successfully");
+      Navigator.pushNamed(context,'/home');
+    }on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+  }
+
+  //Password Change
+  PasswordChange(BuildContext context,String email)async{
+    try{
+      await _auth.sendPasswordResetEmail(email: email);
+    }on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+  }
 }

@@ -28,18 +28,6 @@ class MyApp extends StatelessWidget {
           '/signUp': (context) => const SignUpScreen(),
           '/forgotPassword': (context) => const ForgotPasswordScreen(),
         },
-        home: StreamBuilder(
-          stream: AuthMethods().authChanges,
-          builder: ((context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasData) {
-              return HomeScreen();
-            }
-            return LoginScreen();
-          }),
-        ));
+        home: SplashScreen());
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uni_talk/Utils/Colors.dart';
@@ -13,13 +14,18 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
+  final _auth = FirebaseAuth.instance;
+  get user => _auth.currentUser;
   late final AnimationController _controller =
       AnimationController(duration: const Duration(seconds: 2), vsync: this)
         ..repeat(reverse: true);
   @override
   void initState() {
     super.initState();
+    if(user!=null)
     Timer(const Duration(seconds: 5),
+        () => Navigator.pushNamed(context, '/home'));
+    else Timer(const Duration(seconds: 5),
         () => Navigator.pushNamed(context, '/login'));
   }
 
@@ -32,17 +38,20 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false,
-            elevation: 0,
-            backgroundColor: black,
-            systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: black)),
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          backgroundColor: black,
+          systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: black)),
       backgroundColor: black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         // ignore: prefer_const_literals_to_create_immutables
         children: [
-          SizedBox(height: 60,),
+          SizedBox(
+            height: 60,
+          ),
           Center(
             child: AnimatedBuilder(
               // ignore: sort_child_properties_last

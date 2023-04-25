@@ -5,6 +5,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:uni_talk/Utils/Colors.dart';
 import 'package:uni_talk/Widgets/CustomButton.dart';
 
+import '../resources/auth_method.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -13,6 +15,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final AuthMethods _authMethods = AuthMethods();
   final _formKey = GlobalKey<FormState>();
   bool passwordVisible = false;
 
@@ -89,15 +92,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Enter Password";
-                          } else if (value.length < 8) {
-                            return "Password should be >=8";
+                          } else if (value.length < 6) {
+                            return "Password should be >=6";
                           } else {
                             return null;
                           }
                         },
                         obscureText: passwordVisible == true ? false : true,
                         decoration: InputDecoration(
-                            hintText: "length should be >=8",
+                            hintText: "length should be >=6",
                             label: Text("Password",
                                 style: TextStyle(fontWeight: FontWeight.w400)),
                             prefixIcon: Icon(Icons.lock_open),
@@ -124,7 +127,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   image: false,
                   textColor: white,
                   color: Colors.blue,
-                  onPressed: () {},
+                  onPressed: () {
+                    _authMethods.createUserWithEmail(
+                        context, emailController.text, passwordController.text);
+                  },
                 ),
               ),
               SizedBox(
