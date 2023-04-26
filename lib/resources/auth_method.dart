@@ -9,6 +9,7 @@ class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   //Database
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  User get user => _auth.currentUser!;
 
   Future<bool> signInWithGoogle(BuildContext context) async {
     bool res = false;
@@ -48,7 +49,9 @@ class AuthMethods {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      // ignore: use_build_context_synchronously
       showSnackBar(context, "Registered successfully");
+      // ignore: use_build_context_synchronously
       Navigator.pushNamed(context, '/login');
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
@@ -56,21 +59,23 @@ class AuthMethods {
   }
 
   //Login Users
-  loginUser(BuildContext context, String email, String password)async{
-    try{
+  loginUser(BuildContext context, String email, String password) async {
+    try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      // ignore: use_build_context_synchronously
       showSnackBar(context, "logged in successfully");
-      Navigator.pushNamed(context,'/home');
-    }on FirebaseAuthException catch (e) {
+      // ignore: use_build_context_synchronously
+      Navigator.pushNamed(context, '/home');
+    } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
   }
 
   //Password Change
-  PasswordChange(BuildContext context,String email)async{
-    try{
+  PasswordChange(BuildContext context, String email) async {
+    try {
       await _auth.sendPasswordResetEmail(email: email);
-    }on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
   }

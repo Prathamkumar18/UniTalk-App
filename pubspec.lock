@@ -248,22 +248,31 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.17.0"
-  jitsi_meet_wrapper:
+  jitsi_meet:
     dependency: "direct main"
     description:
-      name: jitsi_meet_wrapper
-      sha256: "7459a792215042e05b4e2380fb1f5467df8bccc82a254c674cd325812fbe219f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.6"
-  jitsi_meet_wrapper_platform_interface:
+      path: "."
+      ref: master
+      resolved-ref: "2a19d529776f45bdcad4adcc1f87b123f5b82b26"
+      url: "https://github.com/dispersik/jitsi_meet_fork"
+    source: git
+    version: "4.0.0"
+  jitsi_meet_platform_interface:
     dependency: transitive
     description:
-      name: jitsi_meet_wrapper_platform_interface
-      sha256: "3ad496e47b6f4de81bf52847b965fe967ca94a5a08cb68c3498dfb1e6beb0d86"
+      name: jitsi_meet_platform_interface
+      sha256: "161bdedd62a2756e5e2ce868c1e8f82d040f1ad24cc46c3c028ac04e339d9492"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.4"
+    version: "2.0.0"
+  jitsi_meet_web_plugin:
+    dependency: transitive
+    description:
+      name: jitsi_meet_web_plugin
+      sha256: "68bb307bcb09790b25c841bdd84f0894c97cf09d2b8c641872f5e53021caba67"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   js:
     dependency: transitive
     description:

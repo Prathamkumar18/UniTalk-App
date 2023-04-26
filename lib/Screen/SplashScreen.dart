@@ -23,9 +23,9 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     if(user!=null)
-    Timer(const Duration(seconds: 5),
+    Timer(const Duration(seconds: 4),
         () => Navigator.pushNamed(context, '/home'));
-    else Timer(const Duration(seconds: 5),
+    else Timer(const Duration(seconds: 4),
         () => Navigator.pushNamed(context, '/login'));
   }
 
