@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 textColor: white,
                 color: Colors.blue,
                 onPressed: () {
-                  _authMethods.LoginUser(
+                  _authMethods.loginUser(
                       context, emailController.text, passwordController.text);
                 },
               ),

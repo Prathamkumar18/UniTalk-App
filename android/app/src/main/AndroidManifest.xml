@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.uni_talk">
-   <application
+    package="com.example.uni_talk"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application 
+        tools:replace="android:label"
         android:label="uni_talk"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

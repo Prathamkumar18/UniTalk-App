@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:uni_talk/Utils/Colors.dart';
 import 'package:uni_talk/Utils/utils.dart';
 import 'package:uni_talk/Widgets/HomeMeetingButton.dart';
@@ -143,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
             canvasColor: black,
             textTheme: Theme.of(context)
                 .textTheme
-                .copyWith(caption: new TextStyle(color: Colors.yellow))),
+                .copyWith(caption: TextStyle(color: Colors.yellow))),
         child: BottomNavigationBar(
             elevation: 10,
             iconSize: 28,
@@ -157,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
             unselectedItemColor: Color.fromARGB(255, 226, 224, 255),
             currentIndex: _page,
             onTap: onPageChanged,
-            items: [
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.comment_bank),
                 label: "Meet & Chat",

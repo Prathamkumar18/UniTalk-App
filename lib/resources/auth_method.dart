@@ -56,7 +56,7 @@ class AuthMethods {
   }
 
   //Login Users
-  LoginUser(BuildContext context, String email, String password)async{
+  loginUser(BuildContext context, String email, String password)async{
     try{
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       showSnackBar(context, "logged in successfully");

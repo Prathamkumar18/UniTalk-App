@@ -5,7 +5,6 @@ import 'package:uni_talk/Screen/SignUp_screen.dart';
 import 'package:uni_talk/Screen/SplashScreen.dart';
 import 'package:uni_talk/Screen/forgotPassword_screen.dart';
 import 'package:uni_talk/Screen/login_screen.dart';
-import 'package:uni_talk/resources/auth_method.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'UniTalk',
         initialRoute: '/splash',
-        routes: {
+        routes: { 
           '/splash': (context) => const SplashScreen(),
           '/login': (context) => const LoginScreen(),
           '/home': (context) => const HomeScreen(),
