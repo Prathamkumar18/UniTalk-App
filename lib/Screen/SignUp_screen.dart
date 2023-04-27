@@ -28,19 +28,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
+    SystemUiOverlayStyle(statusBarColor: bg);
     return Scaffold(
         backgroundColor: bg,
-        appBar: AppBar(
-            elevation: 0,
-            backgroundColor: bg,
-            systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: bg)),
         body: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              SizedBox(
+                height: h * 0.1,
+              ),
               Container(
-                  height: 280,
-                  width: MediaQuery.of(context).size.width,
+                  height: h * 0.36,
+                  width: w,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage("Assets/Images/signup.jpg"),
@@ -74,6 +76,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                         },
                         decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
                             hintText: "eg.xyz1@gmail.com",
                             label: Text(
                               "Email ID",
@@ -98,6 +102,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         obscureText: passwordVisible == true ? false : true,
                         decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
                             hintText: "length should be >=6",
                             label: Text("Password",
                                 style: TextStyle(fontWeight: FontWeight.w400)),

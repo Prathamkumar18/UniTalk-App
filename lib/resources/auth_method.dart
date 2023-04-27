@@ -47,8 +47,20 @@ class AuthMethods {
   createUserWithEmail(
       BuildContext context, String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      final credential = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      User? user = credential.user;
+      if (user != null) {
+        if (credential.additionalUserInfo!.isNewUser) {
+          int index = user.email.toString().indexOf('@');
+          String username = user.email.toString().substring(0, index);
+          await _firestore.collection('users').doc(user.uid).set({
+            'username': username,
+            'uid': user.uid,
+            'profilePhoto': user.photoURL
+          });
+        }
+      }
       // ignore: use_build_context_synchronously
       showSnackBar(context, "Registered successfully");
       // ignore: use_build_context_synchronously

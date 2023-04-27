@@ -22,11 +22,12 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    if(user!=null)
-    Timer(const Duration(seconds: 4),
-        () => Navigator.pushNamed(context, '/home'));
-    else Timer(const Duration(seconds: 4),
-        () => Navigator.pushNamed(context, '/login'));
+    if (user != null)
+      Timer(const Duration(seconds: 4),
+          () => Navigator.pushNamed(context, '/home'));
+    else
+      Timer(const Duration(seconds: 4),
+          () => Navigator.pushNamed(context, '/login'));
   }
 
   @override
@@ -37,6 +38,8 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -44,59 +47,64 @@ class _SplashScreenState extends State<SplashScreen>
           backgroundColor: black,
           systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: black)),
       backgroundColor: black,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        // ignore: prefer_const_literals_to_create_immutables
-        children: [
-          SizedBox(
-            height: 60,
-          ),
-          Center(
-            child: AnimatedBuilder(
-              // ignore: sort_child_properties_last
-              child: Container(
-                height: 180,
-                width: 180,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                        "Assets/Images/icon.png",
-                      ),
-                      fit: BoxFit.cover),
-                  borderRadius: BorderRadius.circular(32),
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          // ignore: prefer_const_literals_to_create_immutables
+          children: [
+            SizedBox(
+              height: h * 0.1,
+            ),
+            Center(
+              child: AnimatedBuilder(
+                // ignore: sort_child_properties_last
+                child: Container(
+                  height: h * 0.2,
+                  width: w * 0.4,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                          "Assets/Images/icon.png",
+                        ),
+                        fit: BoxFit.cover),
+                    borderRadius: BorderRadius.circular(32),
+                  ),
                 ),
+                animation: _controller,
+                builder: (BuildContext context, Widget? child) {
+                  return Transform.rotate(
+                    angle: _controller.value * 2.0 * 3.1459,
+                    child: child,
+                  );
+                },
               ),
-              animation: _controller,
-              builder: (BuildContext context, Widget? child) {
-                return Transform.rotate(
-                  angle: _controller.value * 2.0 * 3.1459,
-                  child: child,
-                );
-              },
             ),
-          ),
-          SizedBox(
-            height: 60,
-          ),
-          Center(
-              child: Image(
-            height: 300,
-            width: 350,
-            image: AssetImage("Assets/Images/splashIcon.png"),
-          )),
-          SizedBox(
-            height: 40,
-          ),
-          Center(
-            child: Text(
-              "UniTalk App",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 45, color: tintWhite, fontWeight: FontWeight.bold),
+            SizedBox(
+              height: h * 0.04,
             ),
-          )
-        ],
+            Center(
+                child: Image(
+              height: h * 0.4,
+              width: w * 0.75,
+              image: AssetImage("Assets/Images/splashIcon.png"),
+            )),
+            SizedBox(
+              height: h * 0.02,
+            ),
+            Center(
+              child: Text(
+                "UniTalk App",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 45,
+                    color: tintWhite,
+                    fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

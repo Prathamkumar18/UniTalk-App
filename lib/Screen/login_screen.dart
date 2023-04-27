@@ -27,29 +27,30 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
+    SystemUiOverlayStyle(statusBarColor: bg);
     return Scaffold(
       backgroundColor: bg,
-      appBar: AppBar(
-          elevation: 0,
-          backgroundColor: bg,
-          systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: bg)),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-                height: 280,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("Assets/Images/Login.jpg"),
-                        fit: BoxFit.cover))),
             SizedBox(
-              height: 5,
+              height: h * 0.05,
+            ),
+            Center(
+              child: Container(
+                  height: h * 0.35,
+                  width: w * 0.8,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("Assets/Images/Login.jpg"),
+                          fit: BoxFit.cover))),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+              padding: const EdgeInsets.only(left: 25.0),
               child: Text("Login",
                   style: TextStyle(
                       color: Color.fromARGB(255, 0, 0, 0),
@@ -58,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 20.0, right: 20.0, top: 5, bottom: 15),
+                  left: 20.0, right: 20.0, top: 15, bottom: 15),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -74,6 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       },
                       decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20)),
                           hintText: "eg.xyz1@gmail.com",
                           label: Text(
                             "Email ID",
@@ -82,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           prefixIcon: Icon(Icons.alternate_email_outlined)),
                     ),
                     SizedBox(
-                      height: 12,
+                      height: 15,
                     ),
                     TextFormField(
                       keyboardType: TextInputType.text,
@@ -98,6 +101,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       obscureText: passwordVisible == true ? false : true,
                       decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20)),
                           hintText: "length should be >=6",
                           label: Text("Password",
                               style: TextStyle(fontWeight: FontWeight.w400)),

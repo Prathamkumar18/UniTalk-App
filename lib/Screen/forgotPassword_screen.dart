@@ -24,19 +24,21 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
+    SystemUiOverlayStyle(statusBarColor: bg);
     return Scaffold(
         backgroundColor: bg,
-        appBar: AppBar(
-            elevation: 0,
-            backgroundColor: bg,
-            systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: bg)),
         body: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              SizedBox(
+                height: h * 0.08,
+              ),
               Container(
-                  height: 280,
-                  width: MediaQuery.of(context).size.width,
+                  height: h * 0.40,
+                  width: w,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage("Assets/Images/forgotPass.jpg"),
@@ -75,7 +77,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 20.0, right: 20.0, top: 15, bottom: 15),
+                    left: 20.0, right: 20.0, top: 20, bottom: 15),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -91,6 +93,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           }
                         },
                         decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)),
                             hintText: "eg.xyz1@gmail.com",
                             label: Text(
                               "Email ID",
@@ -103,7 +107,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: h * 0.02,
               ),
               Center(
                 child: CustomButton(

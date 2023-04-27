@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:uni_talk/Screen/HelpScreen.dart';
 import 'package:uni_talk/Screen/SettingScreen.dart';
 import 'package:uni_talk/Screen/historyMeetingScreen.dart';
 import 'package:uni_talk/Screen/meetingScreen.dart';
@@ -28,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
     MeetingScreen(),
     HistoryMeetingScreen(),
     SettingScreen(),
-    HelpScreen()
   ];
 
   @override
@@ -88,10 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
                 label: "Settings",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.help_center),
-                label: "Help",
               ),
             ]),
       ),

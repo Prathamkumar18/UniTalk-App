@@ -17,9 +17,11 @@ class HomeMeetingButton extends StatefulWidget {
 class _HomeMeetingButtonState extends State<HomeMeetingButton> {
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
     return Container(
-      height: 170,
-      width: 160,
+      height: h * 0.225,
+      width: w * 0.4,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: Color.fromARGB(255, 225, 235, 249),
@@ -28,8 +30,8 @@ class _HomeMeetingButtonState extends State<HomeMeetingButton> {
         InkWell(
           onTap: widget.onPressed,
           child: Container(
-            height: 110,
-            width: 110,
+            height: h * 0.15,
+            width: w * 0.3,
             decoration: BoxDecoration(
                 color: Color.fromARGB(255, 0, 0, 0),
                 borderRadius: BorderRadius.circular(20)),
