@@ -31,7 +31,7 @@ class MeetingScreen extends StatelessWidget {
         children: [
           Container(
             height: h,
-            width:w,
+            width: w,
             child: Column(children: [
               SizedBox(
                 height: h * 0.05,
@@ -47,6 +47,20 @@ class MeetingScreen extends StatelessWidget {
                         fontSize: 45,
                         fontWeight: FontWeight.bold),
                   ),
+                ),
+              ),
+              SizedBox(
+                height: h * 0.03,
+              ),
+              Container(
+                height: h * 0.28,
+                width: w * 0.88,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.black),
+                  image: DecorationImage(
+                      image: AssetImage("Assets/Images/meeting.jpg"),
+                      fit: BoxFit.cover),
                 ),
               ),
               SizedBox(
@@ -82,19 +96,6 @@ class MeetingScreen extends StatelessWidget {
                         color: black,
                         fontSize: 21,
                         fontWeight: FontWeight.bold)),
-              ),
-              SizedBox(
-                height: h * 0.03,
-              ),
-              Container(
-                height: h * 0.25,
-                width: w * 0.8,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
-                      image: AssetImage("Assets/Images/meeting.jpg"),
-                      fit: BoxFit.cover),
-                ),
               ),
             ]),
           ),

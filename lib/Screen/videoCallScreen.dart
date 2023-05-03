@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:uni_talk/Utils/Colors.dart';
 import 'package:uni_talk/Widgets/options.dart';
@@ -52,13 +49,14 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: tintWhite,
+        backgroundColor: Color.fromARGB(255, 241, 241, 253),
         appBar: AppBar(
             elevation: 0,
             automaticallyImplyLeading: true,
-            backgroundColor: tintWhite,
-            systemOverlayStyle:
-                SystemUiOverlayStyle(statusBarColor: tintWhite)),
+            backgroundColor: Color.fromARGB(255, 241, 241, 253),
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: Color.fromARGB(255, 241, 241, 253),
+            )),
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Padding(
@@ -68,10 +66,13 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
               width: w,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(15),
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
+                  boxShadow: [BoxShadow(blurRadius: 1)],
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(15),
+                  color: tintWhite),
               child: Column(children: [
                 SizedBox(
                   height: 20,
@@ -157,7 +158,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                 SizedBox(
                   height: 30,
                 ),
-                Container(
+                SizedBox(
                   height: h * 0.055,
                   width: w * 0.6,
                   child: ElevatedButton(

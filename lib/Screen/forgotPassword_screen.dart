@@ -116,7 +116,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   textColor: white,
                   color: Colors.blue,
                   onPressed: () {
-                    _authMethods.PasswordChange(context, emailController.text);
+                    _authMethods.passwordChange(context, emailController.text);
                     showSnackBar(context,
                         "You will recieve a mail to reset your password.");
                   },

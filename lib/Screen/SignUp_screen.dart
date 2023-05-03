@@ -45,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   width: w,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("Assets/Images/signup.jpg"),
+                          image: AssetImage("Assets/Images/Login.jpg"),
                           fit: BoxFit.cover))),
               SizedBox(
                 height: 15,

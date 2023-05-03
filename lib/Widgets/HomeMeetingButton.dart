@@ -20,7 +20,7 @@ class _HomeMeetingButtonState extends State<HomeMeetingButton> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Container(
-      height: h * 0.225,
+      height: h * 0.22,
       width: w * 0.4,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -31,7 +31,7 @@ class _HomeMeetingButtonState extends State<HomeMeetingButton> {
           onTap: widget.onPressed,
           child: Container(
             height: h * 0.15,
-            width: w * 0.3,
+            width: w * 0.32,
             decoration: BoxDecoration(
                 color: Color.fromARGB(255, 0, 0, 0),
                 borderRadius: BorderRadius.circular(20)),
@@ -43,8 +43,10 @@ class _HomeMeetingButtonState extends State<HomeMeetingButton> {
         ),
         Text(
           widget.text,
-          style:
-              TextStyle(color: Color.fromARGB(255, 74, 74, 74), fontSize: 18),
+          style: TextStyle(
+              color: Color.fromARGB(255, 74, 74, 74),
+              fontSize: 20,
+              fontWeight: FontWeight.bold),
         ),
       ]),
     );

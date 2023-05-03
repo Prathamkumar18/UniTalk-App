@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rive/rive.dart';
 import 'package:uni_talk/Utils/Colors.dart';
 import 'package:uni_talk/Widgets/CustomButton.dart';
 import 'package:uni_talk/resources/auth_method.dart';
@@ -18,6 +20,69 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  //Animation
+  late String animationURL;
+  Artboard? _teddyArtboard;
+  SMITrigger? successTrigger, failTrigger;
+  SMIBool? isHandsUp, isChecking;
+  SMINumber? numLook;
+  StateMachineController? stateMachineController;
+  @override
+  void initState() {
+    super.initState();
+    animationURL = defaultTargetPlatform == TargetPlatform.android ||
+            defaultTargetPlatform == TargetPlatform.iOS
+        ? 'Assets/Images/login.riv'
+        : 'Images/login.riv';
+    rootBundle.load(animationURL).then(
+      (data) {
+        final file = RiveFile.import(data);
+        final artboard = file.mainArtboard;
+        stateMachineController =
+            StateMachineController.fromArtboard(artboard, "Login Machine");
+        if (stateMachineController != null) {
+          artboard.addController(stateMachineController!);
+
+          stateMachineController!.inputs.forEach((e) {
+            debugPrint(e.runtimeType.toString());
+            debugPrint("name${e.name}End");
+          });
+
+          stateMachineController!.inputs.forEach((element) {
+            if (element.name == "trigSuccess") {
+              successTrigger = element as SMITrigger;
+            } else if (element.name == "trigFail") {
+              failTrigger = element as SMITrigger;
+            } else if (element.name == "isHandsUp") {
+              isHandsUp = element as SMIBool;
+            } else if (element.name == "isChecking") {
+              isChecking = element as SMIBool;
+            } else if (element.name == "numLook") {
+              numLook = element as SMINumber;
+            }
+          });
+        }
+
+        setState(() => _teddyArtboard = artboard);
+      },
+    );
+  }
+
+  void handsOnTheEyes() {
+    isHandsUp?.change(true);
+  }
+
+  void lookOnTheTextField() {
+    isHandsUp?.change(false);
+    isChecking?.change(true);
+    numLook?.change(0);
+  }
+
+  void moveEyeBalls(val) {
+    numLook?.change(val.length.toDouble());
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -29,7 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
-    SystemUiOverlayStyle(statusBarColor: bg);
+    SystemUiOverlayStyle(
+        statusBarColor: tintWhite, systemNavigationBarColor: Colors.white);
     return Scaffold(
       backgroundColor: bg,
       body: SingleChildScrollView(
@@ -37,20 +103,18 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: h * 0.05,
-            ),
-            Center(
-              child: Container(
-                  height: h * 0.35,
-                  width: w * 0.8,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("Assets/Images/Login.jpg"),
-                          fit: BoxFit.cover))),
-            ),
+            if (_teddyArtboard != null)
+              SizedBox(
+                width: w,
+                height: h * 0.4,
+                child: Rive(
+                  artboard: _teddyArtboard!,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+            SizedBox(),
             Padding(
-              padding: const EdgeInsets.only(left: 25.0),
+              padding: const EdgeInsets.only(left: 25.0, top: 10.0),
               child: Text("Login",
                   style: TextStyle(
                       color: Color.fromARGB(255, 0, 0, 0),
@@ -65,6 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     TextFormField(
+                      onTap: lookOnTheTextField,
+                      onChanged: (value) => moveEyeBalls(value),
                       keyboardType: TextInputType.emailAddress,
                       controller: emailController,
                       validator: (value) {
@@ -89,6 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.text,
+                      onTap: handsOnTheEyes,
                       controller: passwordController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -147,6 +214,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 textColor: white,
                 color: Colors.blue,
                 onPressed: () {
+                  isChecking?.change(false);
+                  isHandsUp?.change(false);
+                  if (emailController.text.isEmpty ||
+                      passwordController.text.isEmpty)
+                    failTrigger?.fire();
+                  else
+                    successTrigger?.fire();
                   _authMethods.loginUser(
                       context, emailController.text, passwordController.text);
                 },

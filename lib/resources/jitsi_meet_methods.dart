@@ -19,8 +19,9 @@ class JitsiMeetMethods {
       String name;
       if (username.isEmpty) {
         name = _authMethods.user.displayName.toString();
-      } else
+      } else {
         name = username;
+      }
       var options = JitsiMeetingOptions(room: roomName)
         ..userDisplayName = name
         ..userEmail = _authMethods.user.email

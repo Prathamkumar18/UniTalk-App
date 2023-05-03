@@ -62,16 +62,14 @@ class _HomeScreenState extends State<HomeScreen> {
       body: pages[_page],
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
-            // sets the background color of the `BottomNavigationBar`
-            canvasColor: Colors.black,
-            textTheme: Theme.of(context)
-                .textTheme
-                .copyWith(caption: TextStyle(color: Colors.yellow))),
+          // sets the background color of the `BottomNavigationBar`
+          canvasColor: Colors.black,
+        ),
         child: BottomNavigationBar(
             elevation: 0.0,
             iconSize: 28,
-            selectedItemColor: Color.fromARGB(255, 219, 222, 238),
-            unselectedItemColor: Color.fromARGB(255, 121, 118, 163),
+            selectedItemColor: Color.fromARGB(255, 214, 237, 255),
+            unselectedItemColor: Colors.grey,
             currentIndex: _page,
             onTap: onPageChanged,
             items: const [

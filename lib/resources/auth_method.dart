@@ -84,7 +84,7 @@ class AuthMethods {
   }
 
   //Password Change
-  PasswordChange(BuildContext context, String email) async {
+  passwordChange(BuildContext context, String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
