@@ -9,7 +9,7 @@ class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   //Database
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  User get user => _auth.currentUser!;
+  User get user => _auth.currentUser!;  
 
   Future<bool> signInWithGoogle(BuildContext context) async {
     bool res = false;
@@ -33,6 +33,7 @@ class AuthMethods {
             'uid': user.uid,
             'profilePhoto': user.photoURL
           });
+          
         }
         res = true;
       }

@@ -114,8 +114,9 @@ class _HistoryMeetingScreenState extends State<HistoryMeetingScreen> {
                           child: ListTile(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(50))),
-                            tileColor: Color.fromARGB(255, 229, 243, 250),
+                                    bottomLeft: Radius.circular(40),
+                                    topRight: Radius.circular(40))),
+                            tileColor: Color.fromARGB(255, 212, 216, 252),
                             leading: Icon(
                               Icons.history,
                               size: 30,

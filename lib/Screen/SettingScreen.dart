@@ -1,11 +1,9 @@
-import 'dart:ffi';
-
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_talk/Utils/Colors.dart';
+import 'package:uni_talk/Utils/utils.dart';
 import 'package:uni_talk/resources/firestore_methods.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../resources/auth_method.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -19,8 +17,45 @@ class _SettingScreenState extends State<SettingScreen> {
   bool onTapNameEdit = false;
   bool onTapPasswordEdit = false;
   TextEditingController username = TextEditingController();
-  TextEditingController password = TextEditingController();
-  FirestoreMethods _firestoreMethods = FirestoreMethods();
+  TextEditingController email = TextEditingController();
+  final FirestoreMethods _firestoreMethods = FirestoreMethods();
+  final AuthMethods _authMethods = AuthMethods();
+  String uname = "";
+
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  String getUser() {
+    users
+        .doc(_authMethods.user.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        var data = documentSnapshot.get('username');
+        setState(() {
+          uname = data.toString();
+        });
+      } else {
+        print('Document does not exist on the database');
+      }
+    });
+    return uname;
+  }
+
+  Future<void> deleteUser() {
+    return users.doc(_authMethods.user.uid).delete();
+  }
+
+  Future<void> updateUser(String uname) {
+    return users
+        .doc(_authMethods.user.uid)
+        .set(
+          {
+            'username': uname,
+          },
+          SetOptions(merge: true),
+        )
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +73,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         color: Colors.grey,
                         fontSize: 30,
                         fontWeight: FontWeight.bold)),
-                TextIcon("Pratham", Icon(Icons.edit), 30),
+                TextIcon(getUser().toString(), Icon(Icons.edit), 30),
                 SizedBox(
                   height: 10,
                 ),
@@ -49,7 +84,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   height: 10,
                 ),
                 if (onTapPasswordEdit)
-                  EditBox("Password", Icon(Icons.password), password),
+                  EditBox("Email", Icon(Icons.email), email),
                 SizedBox(
                   height: 20,
                 ),
@@ -68,7 +103,11 @@ class _SettingScreenState extends State<SettingScreen> {
                   height: 10,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    deleteUser();
+                    AuthMethods().user.delete();
+                    Navigator.pushNamed(context, "/login");
+                  },
                   child: Container(
                     height: 50,
                     width: 300,
@@ -154,8 +193,25 @@ class _SettingScreenState extends State<SettingScreen> {
               child: TextButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(black)),
-                  onPressed: () {},
-                  child: Text("save",
+                  onPressed: () {
+                    if (text == "Email") {
+                      _authMethods.passwordChange(context, email.text);
+                      email.clear();
+                      showSnackBar(context,
+                          "You will recieve a mail to reset your password.");
+                      setState(() {
+                        onTapPasswordEdit = false;
+                      });
+                    } else {
+                      updateUser(username.text);
+                      username.clear();
+                      showSnackBar(context, "Username Updated Successfully");
+                      setState(() {
+                        onTapNameEdit = false;
+                      });
+                    }
+                  },
+                  child: Text((text == "Email") ? "reset" : "save",
                       style: TextStyle(fontSize: 20, color: Colors.white))),
             ),
             Container(
@@ -180,7 +236,7 @@ class _SettingScreenState extends State<SettingScreen> {
         SizedBox(
           height: 10,
         ),
-        if (text == "Password")
+        if (text == "Email")
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
