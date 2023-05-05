@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -107,30 +108,39 @@ class _HistoryMeetingScreenState extends State<HistoryMeetingScreen> {
               return Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: (snapshot.data! as dynamic).docs.length,
-                    itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: ListTile(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(40),
-                                    topRight: Radius.circular(40))),
-                            tileColor: Color.fromARGB(255, 212, 216, 252),
-                            leading: Icon(
-                              Icons.history,
-                              size: 30,
-                              color: Colors.black,
-                            ),
-                            title: Text(
-                              "Room No: ${(snapshot.data! as dynamic).docs[index]['roomName']}",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                            subtitle: Text(
-                                "Joined on: ${DateFormat.yMMMd().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())}",
-                                style: TextStyle(fontSize: 16)),
-                          ),
-                        )),
+                  shrinkWrap: true,
+                  itemCount: (snapshot.data! as dynamic).docs.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: ListTile(
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                              color: Color.fromARGB(255, 171, 215, 245)),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(50),
+                              bottomRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              bottomLeft: Radius.circular(10))),
+                      tileColor: Color.fromARGB(255, 212, 231, 247),
+                      leading: Icon(
+                        Icons.history,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                      title: Text(
+                        "Room No: ${(snapshot.data! as dynamic).docs[index]['roomName']}",
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                          "Joined on: ${DateFormat.yMMMd().format((snapshot.data! as dynamic).docs[index]['createdAt'].toDate())}",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.grey)),
+                    ),
+                  ),
+                ),
               );
             });
   }

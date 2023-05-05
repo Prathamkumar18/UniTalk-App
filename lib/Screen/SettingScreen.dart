@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:uni_talk/Utils/Colors.dart';
 import 'package:uni_talk/Utils/utils.dart';
-import 'package:uni_talk/resources/firestore_methods.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 import '../resources/auth_method.dart';
 
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({super.key});
+  const SettingScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<SettingScreen> createState() => _SettingScreenState();
@@ -18,7 +21,6 @@ class _SettingScreenState extends State<SettingScreen> {
   bool onTapPasswordEdit = false;
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
-  final FirestoreMethods _firestoreMethods = FirestoreMethods();
   final AuthMethods _authMethods = AuthMethods();
   String uname = "";
 
@@ -30,14 +32,15 @@ class _SettingScreenState extends State<SettingScreen> {
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         var data = documentSnapshot.get('username');
-        setState(() {
-          uname = data.toString();
-        });
+        if (this.mounted)
+          setState(() {
+            uname = data.toString();
+          });
       } else {
-        print('Document does not exist on the database');
+        // print('Document does not exist on the database');
       }
     });
-    return uname;
+    return uname.toUpperCase();
   }
 
   Future<void> deleteUser() {
@@ -59,34 +62,52 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: tintWhite,
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Padding(
-            padding: const EdgeInsets.only(top: 30.0, left: 16.0, right: 30.0),
+            padding: const EdgeInsets.only(top: 30.0, left: 20.0, right: 30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Hello",
                     style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 30,
+                        fontSize: 50,
                         fontWeight: FontWeight.bold)),
-                TextIcon(getUser().toString(), Icon(Icons.edit), 30),
                 SizedBox(
-                  height: 10,
+                  height: h * 0.01,
+                ),
+                TextIcon(
+                    (getUser().toString().length >= 16)
+                        ? getUser().toString().substring(0, 16)
+                        : getUser().toString(),
+                    Icon(Icons.edit),
+                    28),
+                SizedBox(
+                  height: h * 0.01,
                 ),
                 if (onTapNameEdit)
                   EditBox("Username", Icon(Icons.person), username),
+                Divider(
+                  thickness: 0.5,
+                  color: Colors.grey,
+                ),
                 TextIcon("Change Password ?", Icon(Icons.edit), 30),
                 SizedBox(
-                  height: 10,
+                  height: h * 0.01,
                 ),
                 if (onTapPasswordEdit)
                   EditBox("Email", Icon(Icons.email), email),
+                Divider(
+                  thickness: 0.5,
+                  color: Colors.grey,
+                ),
                 SizedBox(
-                  height: 20,
+                  height: h * 0.01,
                 ),
                 Text("Deactivate Account:",
                     style: TextStyle(
@@ -100,7 +121,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         fontSize: 15,
                         fontWeight: FontWeight.bold)),
                 SizedBox(
-                  height: 10,
+                  height: h * 0.01,
                 ),
                 InkWell(
                   onTap: () {
@@ -109,8 +130,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     Navigator.pushNamed(context, "/login");
                   },
                   child: Container(
-                    height: 50,
-                    width: 300,
+                    height: h * 0.065,
+                    width: w * 0.85,
                     decoration: BoxDecoration(
                         border: Border.all(
                             color: Color.fromARGB(255, 73, 206, 251)),
@@ -134,6 +155,8 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   Widget TextIcon(String text, Icon icon, double fontS) {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
     return Row(
       children: [
         Text(text,
@@ -142,7 +165,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 fontSize: fontS,
                 fontWeight: FontWeight.bold)),
         SizedBox(
-          width: 20,
+          width: w * 0.02,
         ),
         InkWell(
             onTap: () {
@@ -159,6 +182,8 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   Widget EditBox(String text, Icon icon, TextEditingController controller) {
+    var h = MediaQuery.of(context).size.height;
+    var w = MediaQuery.of(context).size.width;
     return Column(
       children: [
         TextFormField(
@@ -182,14 +207,14 @@ class _SettingScreenState extends State<SettingScreen> {
               prefixIcon: icon),
         ),
         SizedBox(
-          height: 10,
+          height: h * 0.01,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              height: 40,
-              width: 140,
+              height: h * 0.05,
+              width: w * 0.38,
               child: TextButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(black)),
@@ -215,8 +240,8 @@ class _SettingScreenState extends State<SettingScreen> {
                       style: TextStyle(fontSize: 20, color: Colors.white))),
             ),
             Container(
-              height: 40,
-              width: 140,
+              height: h * 0.05,
+              width: w * 0.38,
               child: TextButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(black)),
@@ -234,18 +259,20 @@ class _SettingScreenState extends State<SettingScreen> {
           ],
         ),
         SizedBox(
-          height: 10,
+          height: h * 0.01,
         ),
         if (text == "Email")
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Want to generate Password?",
-                style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400),
+              Expanded(
+                child: Text(
+                  "Want to generate Password?",
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400),
+                ),
               ),
               SizedBox(
                 width: 5,

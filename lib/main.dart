@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/splash': (context) => const SplashScreen(),
           '/login': (context) => const LoginScreen(),
-          '/home': (context) => const HomeScreen(),
+          '/home': (context) => HomeScreen(),
           '/signUp': (context) => const SignUpScreen(),
           '/forgotPassword': (context) => const ForgotPasswordScreen(),
           '/video-call': (context) => const VideoCallScreen()

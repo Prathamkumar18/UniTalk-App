@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uni_talk/Utils/Colors.dart';
 import 'package:uni_talk/Widgets/CustomButton.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../resources/auth_method.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -123,7 +123,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Want to generate Password?",
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      final url =
+                          'https://priyanshu25022002raj.github.io/pass.github.io/';
+                      await launch(url,
+                          forceSafariVC: true,
+                          forceWebView: true,
+                          enableJavaScript: true);
+                    },
+                    child: Text(
+                      "click here",
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
               ),
               Center(
                 child: CustomButton(

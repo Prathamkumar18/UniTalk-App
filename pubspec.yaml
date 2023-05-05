@@ -57,6 +57,11 @@ dependencies:
 
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "Assets/Images/icon.png"
   flutter_test:
     sdk: flutter
 

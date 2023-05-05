@@ -23,7 +23,7 @@ class FirestoreMethods {
         'createdAt': DateTime.now(),
       });
     } catch (e) {
-      print(e);
+      // print(e);
     }
   }
 }

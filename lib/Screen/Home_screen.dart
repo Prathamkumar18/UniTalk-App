@@ -9,7 +9,6 @@ import 'package:uni_talk/Utils/utils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -56,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Icons.logout_rounded,
                   color: Colors.black,
                   size: 30,
-                ))
+                )),
           ],
           systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: tintWhite)),
       body: pages[_page],

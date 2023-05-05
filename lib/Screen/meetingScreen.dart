@@ -29,7 +29,7 @@ class MeetingScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
+          SizedBox(
             height: h,
             width: w,
             child: Column(children: [

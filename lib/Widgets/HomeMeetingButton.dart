@@ -30,7 +30,7 @@ class _HomeMeetingButtonState extends State<HomeMeetingButton> {
         InkWell(
           onTap: widget.onPressed,
           child: Container(
-            height: h * 0.15,
+            height: h * 0.14,
             width: w * 0.32,
             decoration: BoxDecoration(
                 color: Color.fromARGB(255, 0, 0, 0),

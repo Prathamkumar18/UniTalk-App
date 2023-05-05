@@ -44,11 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
         if (stateMachineController != null) {
           artboard.addController(stateMachineController!);
 
-          stateMachineController!.inputs.forEach((e) {
-            debugPrint(e.runtimeType.toString());
-            debugPrint("name${e.name}End");
-          });
-
           stateMachineController!.inputs.forEach((element) {
             if (element.name == "trigSuccess") {
               successTrigger = element as SMITrigger;
@@ -217,10 +212,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   isChecking?.change(false);
                   isHandsUp?.change(false);
                   if (emailController.text.isEmpty ||
-                      passwordController.text.isEmpty)
+                      passwordController.text.isEmpty) {
                     failTrigger?.fire();
-                  else
+                  } else {
                     successTrigger?.fire();
+                  }
                   _authMethods.loginUser(
                       context, emailController.text, passwordController.text);
                 },
