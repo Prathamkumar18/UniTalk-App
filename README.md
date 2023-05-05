@@ -1,16 +1,8 @@
-# uni_talk
+# Uni_talk
+It is an online meeting app with video, audio, and real-time chat features during the meeting.
+• FirebaseAuth integrated to supports user authentication with email and password, and Google Sign-In.
+• Firebase Database is used for storing user data and MeetingHistory.
+• Jitsi_meet for hosting and joining meeting.
 
-A new Flutter project.
+https://user-images.githubusercontent.com/96865753/236547650-2366eb92-c1ee-48c7-8cda-7ed88bb54f84.mp4
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
