@@ -206,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: CustomButton(
                 text: "Login",
                 image: false,
-                textColor: white,
+                textColor: Colors.white,
                 color: Colors.blue,
                 onPressed: () {
                   isChecking?.change(false);

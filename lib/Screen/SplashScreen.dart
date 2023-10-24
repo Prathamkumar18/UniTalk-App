@@ -1,13 +1,10 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:uni_talk/Utils/Colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -64,14 +61,12 @@ class _SplashScreenState extends State<SplashScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
-            // ignore: prefer_const_literals_to_create_immutables
             children: [
               SizedBox(
                 height: h * 0.08,
               ),
               Center(
                 child: AnimatedBuilder(
-                  // ignore: sort_child_properties_last
                   child: Container(
                     height: h * 0.18,
                     width: w * 0.4,

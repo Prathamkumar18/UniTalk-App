@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text(
             "Meet & Chat",
             style: TextStyle(
-                color: black, fontSize: 40, fontWeight: FontWeight.bold),
+                color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold),
           ),
           actions: [
             IconButton(
@@ -61,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: pages[_page],
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
-          // sets the background color of the `BottomNavigationBar`
           canvasColor: Colors.black,
         ),
         child: BottomNavigationBar(

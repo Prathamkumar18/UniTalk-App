@@ -164,7 +164,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: CustomButton(
                   text: "Sign Up",
                   image: false,
-                  textColor: white,
+                  textColor: Colors.white,
                   color: Colors.blue,
                   onPressed: () {
                     _authMethods.createUserWithEmail(

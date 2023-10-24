@@ -37,7 +37,6 @@ class _SettingScreenState extends State<SettingScreen> {
             uname = data.toString();
           });
       } else {
-        // print('Document does not exist on the database');
       }
     });
     return uname.toUpperCase();
@@ -217,7 +216,7 @@ class _SettingScreenState extends State<SettingScreen> {
               width: w * 0.38,
               child: TextButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(black)),
+                      backgroundColor: MaterialStateProperty.all(Colors.black)),
                   onPressed: () {
                     if (text == "Email") {
                       _authMethods.passwordChange(context, email.text);
@@ -244,7 +243,7 @@ class _SettingScreenState extends State<SettingScreen> {
               width: w * 0.38,
               child: TextButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(black)),
+                      backgroundColor: MaterialStateProperty.all(Colors.black)),
                   onPressed: () {
                     setState(() {
                       if (text == "Username") {

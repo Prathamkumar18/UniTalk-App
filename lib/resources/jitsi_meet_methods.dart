@@ -14,8 +14,7 @@ class JitsiMeetMethods {
     try {
       FeatureFlag featureFlag = FeatureFlag();
       featureFlag.welcomePageEnabled = false;
-      featureFlag.resolution = FeatureFlagVideoResolution
-          .MD_RESOLUTION; // Limit video resolution to 360p
+      featureFlag.resolution = FeatureFlagVideoResolution.MD_RESOLUTION;
       String name;
       if (username.isEmpty) {
         name = _authMethods.user.displayName.toString();
@@ -25,7 +24,7 @@ class JitsiMeetMethods {
       var options = JitsiMeetingOptions(room: roomName)
         ..userDisplayName = name
         ..userEmail = _authMethods.user.email
-        ..userAvatarURL = _authMethods.user.photoURL // or .png
+        ..userAvatarURL = _authMethods.user.photoURL
         ..audioMuted = isAudioMuted
         ..videoMuted = isVideoMuted;
       _firestoreMethods.addToMeetHistory(roomName);

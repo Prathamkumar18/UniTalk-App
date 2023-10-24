@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:uni_talk/Utils/Colors.dart';
 import 'package:uni_talk/Widgets/HomeMeetingButton.dart';
 import 'package:uni_talk/resources/jitsi_meet_methods.dart';
 
@@ -43,7 +41,7 @@ class MeetingScreen extends StatelessWidget {
                   child: Text(
                     "Welcome",
                     style: TextStyle(
-                        color: black,
+                        color: Colors.black,
                         fontSize: 45,
                         fontWeight: FontWeight.bold),
                   ),
@@ -66,26 +64,45 @@ class MeetingScreen extends StatelessWidget {
               SizedBox(
                 height: h * 0.03,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  HomeMeetingButton(
-                      icon: Icon(
-                        Icons.videocam,
-                        size: 50,
-                        color: Color.fromARGB(255, 192, 214, 232),
-                      ),
-                      text: "New Meeting",
-                      onPressed: createNewMeeting),
-                  HomeMeetingButton(
-                      icon: Icon(
-                        Icons.add_box_rounded,
-                        size: 50,
-                        color: Color.fromARGB(255, 192, 214, 232),
-                      ),
-                      text: "Join Meeting",
-                      onPressed: () => joinMeeting(context)),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    HomeMeetingButton(
+                        icon: Icon(
+                          Icons.videocam,
+                          size: 50,
+                          color: Color.fromARGB(255, 192, 214, 232),
+                        ),
+                        text: "New Meeting",
+                        onPressed: createNewMeeting),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    HomeMeetingButton(
+                        icon: Icon(
+                          Icons.add_box_rounded,
+                          size: 50,
+                          color: Color.fromARGB(255, 192, 214, 232),
+                        ),
+                        text: "Join Meeting",
+                        onPressed: () => joinMeeting(context)),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    HomeMeetingButton(
+                        icon: Icon(
+                          Icons.calendar_month,
+                          size: 50,
+                          color: Color.fromARGB(255, 192, 214, 232),
+                        ),
+                        text: "Schedule",
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/schedule');
+                        }),
+                  ],
+                ),
               ),
               SizedBox(
                 height: h * 0.03,
@@ -93,7 +110,7 @@ class MeetingScreen extends StatelessWidget {
               Center(
                 child: Text("Create/Join Meeting with just a click!",
                     style: TextStyle(
-                        color: black,
+                        color: Colors.black,
                         fontSize: 21,
                         fontWeight: FontWeight.bold)),
               ),

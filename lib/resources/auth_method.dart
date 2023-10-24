@@ -33,7 +33,6 @@ class AuthMethods {
             'uid': user.uid,
             'profilePhoto': user.photoURL
           });
-          
         }
         res = true;
       }

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uni_talk/Screen/Home_screen.dart';
+import 'package:uni_talk/Screen/ScheduleMeeting.dart';
 import 'package:uni_talk/Screen/SignUp_screen.dart';
 import 'package:uni_talk/Screen/SplashScreen.dart';
 import 'package:uni_talk/Screen/forgotPassword_screen.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
           '/home': (context) => HomeScreen(),
           '/signUp': (context) => const SignUpScreen(),
           '/forgotPassword': (context) => const ForgotPasswordScreen(),
-          '/video-call': (context) => const VideoCallScreen()
+          '/video-call': (context) => const VideoCallScreen(),
+          '/schedule': (context) => const ScheduleMeeting()
         },
         home: SplashScreen());
   }

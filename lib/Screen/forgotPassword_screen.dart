@@ -113,7 +113,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 child: CustomButton(
                   text: "Submit",
                   image: false,
-                  textColor: white,
+                  textColor: Colors.white,
                   color: Colors.blue,
                   onPressed: () {
                     _authMethods.passwordChange(context, emailController.text);

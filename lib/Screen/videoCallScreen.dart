@@ -80,7 +80,9 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                 Text(
                   "Join a Meeting",
                   style: TextStyle(
-                      color: black, fontSize: 40, fontWeight: FontWeight.bold),
+                      color: Colors.black,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 30,
